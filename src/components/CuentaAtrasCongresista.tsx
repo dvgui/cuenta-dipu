@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import TiempoRestante from './TiempoRestante';
 import ProgresoMandato from './ProgresoMandato';
+import Compartir from './Compartir';
 import { calcularDiasRestantes, calcularProgreso } from '@/lib/utils';
 
 export default function CuentaAtrasCongresista() {
@@ -46,6 +47,8 @@ export default function CuentaAtrasCongresista() {
                 </div>
 
                 <ProgresoMandato progreso={progreso} />
+
+                <Compartir diasRestantes={diasRestantes} />
             </div>
         </div>
     );
