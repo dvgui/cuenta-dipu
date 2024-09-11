@@ -7,7 +7,7 @@ interface CompartirProps {
 
 export default function Compartir({ diasRestantes }: CompartirProps) {
     const compartir = () => {
-        const url = window.location.href;
+        const url = `https://chau-tetaz.vercel.app/`;
         const texto = `Días que quedan hasta que Martín Tetaz no sea más Diputado: ${diasRestantes}`;
 
         const compartirEnX = () => {
