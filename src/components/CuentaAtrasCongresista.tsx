@@ -2,30 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import TiempoRestante from './TiempoRestante';
 import ProgresoMandato from './ProgresoMandato';
-import NoticiasEventos from './NoticiasEventos';
-import AgregarHito from './AgregarHito';
-import Compartir from './Compartir';
-import { cargarNoticias } from '@/lib/actions';
 import { calcularDiasRestantes, calcularProgreso } from '@/lib/utils';
-import { Noticia } from '@/types/noticia';
 
 export default function CuentaAtrasCongresista() {
-    const noticiaTemp: Noticia = {
-        id: 'temp',
-        descripcion: 'No hizo nada',
-        url: '',
-        imagen: '',
-        fecha: Date.now().toString(),
-    };
     const [diasRestantes, setDiasRestantes] = useState(0);
     const [fechaInicio] = useState(new Date('2021-12-10'));
     const [fechaFin] = useState(new Date('2025-12-10'));
-    const [enviado, setEnviado] = useState(false);
     const [progreso, setProgreso] = useState(0);
-    const [noticias, setNoticias] = useState([noticiaTemp]);
 
     useEffect(() => {
         const actualizarTiempo = () => {
@@ -36,19 +21,8 @@ export default function CuentaAtrasCongresista() {
         actualizarTiempo();
         const intervalo = setInterval(actualizarTiempo, 1000);
 
-        cargarNoticiasDesdeServidor();
-
         return () => clearInterval(intervalo);
     }, [fechaFin, fechaInicio]);
-
-    const cargarNoticiasDesdeServidor = async () => {
-        try {
-            const noticiasServidor: Noticia[] = await cargarNoticias();
-            setNoticias(noticiasServidor);
-        } catch (error) {
-            console.error('Error al cargar noticias:', error);
-        }
-    };
 
     return (
         <div className="min-h-screen bg-black text-white">
@@ -72,22 +46,6 @@ export default function CuentaAtrasCongresista() {
                 </div>
 
                 <ProgresoMandato progreso={progreso} />
-                <NoticiasEventos noticias={noticias} />
-                <AgregarHito
-                    onHitoAgregado={cargarNoticiasDesdeServidor}
-                    setEnviado={setEnviado}
-                />
-                <Compartir diasRestantes={diasRestantes} />
-
-                {enviado && (
-                    <Alert className="mt-4 bg-green-900 border-green-800 text-white">
-                        <AlertTitle>Éxito</AlertTitle>
-                        <AlertDescription>
-                            Tu hito ha sido enviado y está pendiente de
-                            aprobación por un administrador.
-                        </AlertDescription>
-                    </Alert>
-                )}
             </div>
         </div>
     );
