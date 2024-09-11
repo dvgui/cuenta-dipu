@@ -19,3 +19,10 @@ export function convertirImagenABase64(file: File): Promise<string> {
         reader.onerror = (error) => reject(error);
     });
 }
+
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
+}

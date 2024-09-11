@@ -1,6 +1,5 @@
+'use server';
 import { Noticia } from '@/types/noticia';
-
-('use server');
 import { kv } from '@vercel/kv';
 
 export async function cargarNoticias(): Promise<Noticia[]> {
