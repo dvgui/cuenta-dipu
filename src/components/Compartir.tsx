@@ -42,28 +42,28 @@ export default function Compartir({ diasRestantes }: CompartirProps) {
         };
 
         return (
-            <div className="flex space-x-2">
+            <div className="-m-1 flex flex-wrap flex-row items-center">
                 <Button
                     onClick={compartirEnX}
-                    className="bg-blue-400 hover:bg-blue-500"
+                    className="m-1 bg-blue-400 hover:bg-blue-500"
                 >
-                    X
+                    X (Twitter)
                 </Button>
                 <Button
                     onClick={compartirEnWhatsApp}
-                    className="bg-green-500 hover:bg-green-600"
+                    className="m-1 bg-green-500 hover:bg-green-600"
                 >
                     WhatsApp
                 </Button>
                 <Button
                     onClick={compartirEnTelegram}
-                    className="bg-blue-500 hover:bg-blue-600"
+                    className="m-1 bg-blue-500 hover:bg-blue-600"
                 >
                     Telegram
                 </Button>
                 <Button
                     onClick={copiarURL}
-                    className="bg-gray-500 hover:bg-gray-600"
+                    className="m-1 bg-gray-500 hover:bg-gray-600"
                 >
                     Copiar URL
                 </Button>
