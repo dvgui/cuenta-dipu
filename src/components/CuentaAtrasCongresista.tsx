@@ -6,11 +6,16 @@ import TiempoRestante from './TiempoRestante';
 import ProgresoMandato from './ProgresoMandato';
 import Compartir from './Compartir';
 import { calcularDiasRestantes, calcularProgreso } from '@/lib/utils';
+import { toZonedTime } from 'date-fns-tz';
+
+const timeZone = 'America/Argentina/Buenos_Aires';
 
 export default function CuentaAtrasCongresista() {
     const [diasRestantes, setDiasRestantes] = useState(0);
-    const [fechaInicio] = useState(new Date('2021-12-10'));
-    const [fechaFin] = useState(new Date('2025-12-10'));
+    const [fechaInicio] = useState(
+        toZonedTime(new Date('2021-12-10'), timeZone)
+    );
+    const [fechaFin] = useState(toZonedTime(new Date('2025-12-10'), timeZone));
     const [progreso, setProgreso] = useState(0);
 
     useEffect(() => {
